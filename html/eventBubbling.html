@@ -1,0 +1,18 @@
+<style>
+    body * {
+        margin: 10px;
+        border: 1px solid blue;
+    }
+</style>
+
+<form onclick="clickme('form')">FORM
+    <div onclick="clickme('div')">DIV
+        <p onclick="clickme('p')">P</p>
+    </div>
+</form>
+
+<script>
+function clickme(el){
+    alert(el);
+}
+</script>
