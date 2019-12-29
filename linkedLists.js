@@ -1,62 +1,49 @@
-// class LinkedList {
-//     constructor(value) {
-//         this.head = {
-//             value,
-//             next: null
-//         };
-//         this.length = 1;
-//     }
-// }
-//console.log(new LinkedList('Hello!'));
-
-////////////////////////////////
-
+class LinkedListNode {
+  constructor(data) {
+      this.data = data;
+      this.next = null;
+  }
+}
 
 class LinkedList {
-    constructor(value) {
+    constructor() {
         this.head = null;
-        this.length = 0;
-        this.addToHead(value);
     }
 
-    addToHead(value) {
-        const newNode = { value }; // 1
-        newNode.next = this.head;  // 2
-        this.head = newNode;       // 3
-        this.length++;
-        return this;
-    }
+    add(data) {
 
-    removeFromHead() {
-        if (this.length === 0) {
-            return undefined;
-        }
+      // create a new node
+      const newNode = new LinkedListNode(data);
 
-        const value = this.head.value;
-        this.head = this.head.next;
-        this.length--;
+      //special case: no items in the list yet
+      if (this.head=== null) {
 
-        return value;
-    }
+          // just set the head to the new node
+          this.head = newNode;
+      } else {
 
-    find(val) {
-        let thisNode = this.head;
+          // start out by looking at the first node
+          let current = this.head;
 
-        while (thisNode) {
-            if (thisNode.value === val) {
-                return thisNode;
-            }
+          // follow `next` links until you reach the end
+          while (current.next !== null) {
+              current = current.next;
+          }
 
-            thisNode = thisNode.next;
-        }
+          // assign the node into the `next` pointer
+          current.next = newNode;
+      }
+  }
 
-        return thisNode;
-    }
 }
-const list = new LinkedList('first');
-list.addToHead('second')
-list.addToHead('third');
-//list.removeFromHead();
-list.find("first");
 
-console.log(list.find("first"));
+const ll = new LinkedList();
+ll.add(10);
+ll.add(20);
+ll.add(30);
+// ll.add(40);
+console.log(JSON.stringify(ll));
+ll.remove();
+
+//console.log(ll.addToEnd());
+console.log(JSON.parse(ll));
